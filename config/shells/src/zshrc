@@ -1,0 +1,8 @@
+source $HOME/.commonrc
+
+# Load completion files
+fpath=($HOME/.zsh.d $fpath)
+
+# enable the default zsh completions
+# `compinit -i` Ignore insecure directories
+autoload -Uz compinit && compinit -u

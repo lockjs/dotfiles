@@ -1,0 +1,6 @@
+{
+    "filename_pattern": "(?P<title>.+) - (?P<author>[^_]+)",
+    "language": "en_GB",
+    "library_path": "/Users/james/Books",
+    "output_format": "mobi"
+  }

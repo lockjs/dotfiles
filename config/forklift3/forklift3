@@ -1,0 +1,12 @@
+
+#!/usr/bin/env sh
+# ForkLift 3 User Manual - https://binarynights.com/manual#fileviewer
+
+echo "Set FokLift 3 as default file viewer"
+defaults write -g NSFileViewer -string com.binarynights.ForkLift-3;
+defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{LSHandlerContentType="public.folder";LSHandlerRoleAll="com.binarynights.ForkLift-3";}'
+
+# defaults delete -g NSFileViewer
+# defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{LSHandlerContentType="public.folder";LSHandlerRoleAll="com.apple.finder";}'
+
+echo "$(tput setaf 3) ! $(tput sgr0)Restart required for changes to take affect"

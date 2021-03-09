@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo -e "\\nSetting up calibre"
+echo "=============================="
+
+echo "killing any running instances"
+killall "calibre" > /dev/null 2>&1
+
+target_path="$HOME/Library/Preferences/calibre"
+if [ -d "$target_path" ]; then
+    echo "$target_path already exists... skipping"
+else
+    echo "Creating directory $target_path"
+    mkdir -p "$target_path"
+fi
+
+files=$( find -H "$DOTFILES"/config/calibre/src -type f )
+for file in $files ; do
+    target="$target_path/$( basename "$file" )"
+    
+    echo "Creating file $target"
+    cp "$file" "$target"
+done

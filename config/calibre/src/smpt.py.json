@@ -1,0 +1,18 @@
+{
+    "accounts": {
+      "james_38577@kindle.com": [
+        "AZW, MOBI, TPZ, PRC, AZW1", 
+        true, 
+        true
+      ]
+    }, 
+    "aliases": {}, 
+    "encryption": "TLS", 
+    "from_": "calibre@lockjs.co.uk", 
+    "relay_host": null, 
+    "relay_password": "", 
+    "relay_port": 25, 
+    "relay_username": null, 
+    "subjects": {}, 
+    "tags": {}
+  }

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo -e "\\nSetting up iTerm2"
+echo "=============================="
+
+echo "killing any running instances"
+killall "iTerm2" > /dev/null 2>&1
+
+linkables=$( find -H "$DOTFILES"/config/iTerm2/src -type f )
+for file in $linkables ; do
+    target="$HOME/Library/Preferences/$( basename "$file" )"
+    if [ -e "$target" ]; then
+        echo "~${target#$HOME} already exists... removing."
+        rm ${target}
+    fi
+        echo "Creating symlink for $file"
+        ln -s "$file" "$target"
+done

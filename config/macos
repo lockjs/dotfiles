@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+# ~/.macos — https://mths.be/macos
+
+echo -e "\\n\\nConfiguring MacOS..."
+echo "=============================="
+
+# echo "Set bash as the default shell"
+# chsh -s /bin/bash
+
+echo "Expand save panel by default"
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+echo "Expand print panel by default"
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+echo "Save to disk (not to iCloud) by default"
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+echo "Automatically quit printer app once the print jobs complete"
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+echo "Disable Resume system-wide"
+defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+
+echo "Show the ~/Library folder"
+chflags nohidden ~/Library
+
+echo -e "\\n\\nConfiguring Dock..."
+echo "=============================="
+
+echo "Wiping all (default) app icons from the Dock"
+defaults write com.apple.dock persistent-apps -array
+
+echo "Set the icon size of Dock items to 36 pixels"
+defaults write com.apple.dock tilesize -int 36
+
+echo "Automatically hide and show the Dock"
+defaults write com.apple.dock autohide -bool true
+
+echo "Place the Dock on the left"
+defaults write com.apple.dock orientation "left"
+
+echo -e "\\n\\nConfiguring Finder..."
+echo "=============================="
+
+echo "Show hidden files by default"
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+echo "Show status bar"
+defaults write com.apple.finder ShowStatusBar -bool true
+
+echo "Show path bar"
+defaults write com.apple.finder ShowPathbar -bool true
+
+echo "Keep folders on top when sorting by name"
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+echo "Search the current folder by default"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+echo "Disable the warning when changing a file extension"
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+echo "Avoid creating .DS_Store files on network or USB volumes"
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+echo -e "\\n\\nRestarting affected apps..."
+
+apps=(
+    Dock
+    Finder
+)
+
+for app in "${apps[@]}"; do
+	killall "${app}" > /dev/null 2>&1
+done

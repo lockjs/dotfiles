@@ -1,0 +1,4 @@
+# Disable deprecation warning on OSX 10.15+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+[ -r $HOME/.bashrc ] && source $HOME/.bashrc

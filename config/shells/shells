@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo -e "\\nSetting up shells"
+echo "=============================="
+
+linkables=$( find -H $( cd "$(dirname "$0")" ; pwd -P )/src -depth 1 )
+for file in $linkables ; do
+    target="$HOME/.$( basename "$file" )"
+    if [ -e "$target" ]; then
+        echo "~${target#$HOME} already exists... Skipping."
+    else
+        echo "Creating symlink for $file at $target"
+        ln -s "$file" "$target"
+    fi
+done
